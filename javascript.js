@@ -99,7 +99,7 @@ L.Control.textbox = L.Control.extend({
         
     var text = L.DomUtil.create('div', "textBoxStyle");
     text.id = "info_text";
-    text.innerHTML = "<h3>Instructions</h3> Draw a polygon, polyline, or marker. Then, click on the drawing to enter information about the ski resort you're at."
+    text.innerHTML = "<strong>Instructions</strong> <br> Draw a polygon, polyline, or marker. Then, click on the drawing to enter information about the ski resort you're at."
     return text;
     },
 
