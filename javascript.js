@@ -92,14 +92,20 @@ map.addEventListener("draw:deletestop", function(e) {
     }
 });
 
-// add instructions to the map
-var instructions = L.control({position: 'bottomleft'});
-instructions.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info');
-    this.update();
-    return this._div;
-};
-instructions.update = function (props) {
-    this._div.innerHTML = '<h4>Instructions</h4>' +  'Draw a polygon, polyline, or marker. Then, click on the drawing to enter information about the ski resort you\'re at.';
-};
-instructions.addTo(map);
+
+// Text box overlay
+L.Control.textbox = L.Control.extend({
+    onAdd: function(map) {
+        
+    var text = L.DomUtil.create('div', "textBoxStyle");
+    text.id = "info_text";
+    text.innerHTML = "<h3>Instructions</h3> Draw a polygon, polyline, or marker. Then, click on the drawing to enter information about the ski resort you're at."
+    return text;
+    },
+
+    onRemove: function(map) {
+        // Nothing to do here
+    }
+});
+L.control.textbox = function(opts) { return new L.Control.textbox(opts);}
+L.control.textbox({ position: 'bottomleft'}).addTo(map);
